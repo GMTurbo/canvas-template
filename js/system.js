@@ -25,6 +25,8 @@ var System = function(options) {
     initialSetup = true,
     isMobile = options.isMobile;
 
+  var target = {x:0, y:0, r: 10};
+
   var setup = function() {
     updateSystem();
   };
@@ -32,8 +34,8 @@ var System = function(options) {
   function drawSystem() {
     //draw the system here
     context.clearRect(0, 0, width, height);
-    context.font="30px Verdana";
-    context.fillText("Ready to go",width/2 - 50,height/2);
+
+    drawTarget();
   };
 
   function updateSystem() {
@@ -42,8 +44,19 @@ var System = function(options) {
     reqFrame(updateSystem);
   };
 
-  function onMouseMove(mouse) {
+  function drawTarget(){
+    context.beginPath();
+    context.arc(target.x, target.y, target.r, 0, 2 * Math.PI, false);
+    context.fillStyle = 'green';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = '#003300';
+    context.stroke();
+  }
 
+  function onMouseMove(mouse) {
+      target.x = mouse.x;
+      target.y = mouse.y;
   }
 
   function onKeyPress(e) {
