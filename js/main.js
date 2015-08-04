@@ -42,6 +42,14 @@ $(document).ready(function() {
     });
   });
 
+  $(window).on("mousemove", function(event) {
+    console.log(event.clientX, ', ', event.clientX )
+    system.onMouseMove({
+      x: event.clientX,
+      y: event.clientY
+    });
+  });
+
   $(window).resize(function() {
 
     system.resize({
